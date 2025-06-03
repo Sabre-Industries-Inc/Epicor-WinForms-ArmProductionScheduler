@@ -1241,7 +1241,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_txtPartNum_KeyPress", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
         private void txtSONum_KeyPress(object sender, KeyPressEventArgs e)
@@ -1256,7 +1256,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_txtSONum_KeyPress", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
         /// <summary>
@@ -1282,7 +1282,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_frJobDataGridView_DataError", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
 
         }
 
@@ -1321,7 +1321,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_frJobDataGridView_KeyDown", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
 
@@ -1333,7 +1333,7 @@ namespace ArmProductionScheduler
         /// <param name="e">See MSDN.</param>
         private void ArmProductionScheduler_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
+           try
             {
                 var modifiedRows = GetChangedRows();
 
@@ -1361,14 +1361,14 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_ArmProductionScheduler_FormClosing", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
 
 
         }
 
         private void toJobDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            try
+           try
             {
                 var row = this.toJobDataGridView.Rows[e.RowIndex];
 
@@ -1390,7 +1390,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_toJobDataGridView_RowPostPaint", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
 
         }
 
@@ -1410,7 +1410,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_frSelectAllToolStripMenuItem_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
         private void groupBySOStripMenuItem_Click(object sender, EventArgs e)
@@ -1444,7 +1444,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_groupBySOStripMenuItem_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
         private void frJobDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -1528,7 +1528,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_frJobDataGridView_RowPostPaint", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
 
         }
 
@@ -1555,7 +1555,7 @@ namespace ArmProductionScheduler
 
         private void toJobDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            try
+          try
             {
 
                 if (toJobDataGridView.DataSource == null || toJobDataGridView.Columns.Count == 0)
@@ -1572,7 +1572,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_toJobDataGridView_SelectionChanged", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
 
         private void frShowMtlToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1599,7 +1599,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(string.Format("Failed to Open show material form. /n {0}", ex.Message), "Show Materials Dialog");
-            }
+            } 
 
         }
 
@@ -1695,7 +1695,7 @@ namespace ArmProductionScheduler
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error_toJobDataGridView_CellContentClick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } 
         }
     }
 }

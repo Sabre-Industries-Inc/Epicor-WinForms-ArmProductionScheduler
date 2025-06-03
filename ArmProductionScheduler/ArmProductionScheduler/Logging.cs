@@ -69,7 +69,7 @@ namespace ArmProductionScheduler
 
 		private static string GetLogFolderPath()
 		{
-			var directoryPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData), Path.Combine("MassPartReplacement", "Logs"));
+			var directoryPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData), Path.Combine("ArmProductionScheduler", "Logs"));
 
 			if (!Directory.Exists(directoryPath))
 				Directory.CreateDirectory(directoryPath);

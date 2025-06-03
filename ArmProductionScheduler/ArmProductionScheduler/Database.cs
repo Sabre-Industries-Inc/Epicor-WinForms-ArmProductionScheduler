@@ -58,7 +58,8 @@ namespace ArmProductionScheduler
         /// <returns>The available customers.</returns>
         public DataTable GetAvailableCustomers()
         {
-            string sql = @"
+          
+                string sql = @"
                 SELECT
                         CustNum =   0
                         ,Name =     N''
@@ -71,7 +72,8 @@ namespace ArmProductionScheduler
                 ORDER BY
                         Name";
 
-            return EpicConnector.Queries.Utility.GetTableBySql(environment, sql);
+                return EpicConnector.Queries.Utility.GetTableBySql(environment, sql);
+           
         }
 
         /// <summary>
@@ -381,25 +383,33 @@ namespace ArmProductionScheduler
 
         public void JobTravelerSTSArmsSSRS(string jobNum, string scheduleQue)
         {
-           
-            string filePath = $"{EpicUtility.Report.TempExportFolder}\\JobTraveler_STSArms_SSRS_{jobNum}_{DateTime.Today.ToString("yyyyMMdd")}.pdf";
+            try
+            {
 
-         
-            Logging.LogMessage(TraceLevel.Info,
-                  $"Generating JobTraveler_STSArms_SSRS_{jobNum} Report, {DateTime.Today.ToShortDateString()}");
+                string filePath = $"{EpicUtility.Report.TempExportFolder}\\JobTraveler_STSArms_SSRS_{jobNum}_{DateTime.Today.ToString("yyyyMMdd")}.pdf";
 
-            RunReport(filePath, jobNum, scheduleQue);
 
-          
-            Logging.LogMessage(TraceLevel.Info,
-                   $"Emailing JobTraveler_STSArms_SSRS_{jobNum} Report to distribution group \"JobTravelerSTSArms\"");
-           
-            EmailReport(filePath, jobNum, scheduleQue);
+                Logging.LogMessage(TraceLevel.Info,
+                      $"Generating JobTraveler_STSArms_SSRS_{jobNum} Report, {DateTime.Today.ToShortDateString()}");
+
+                RunReport(filePath, jobNum, scheduleQue);
+
+
+                Logging.LogMessage(TraceLevel.Info,
+                       $"Emailing JobTraveler_STSArms_SSRS_{jobNum} Report to distribution group \"JobTravelerSTSArms\"");
+
+                EmailReport(filePath, jobNum, scheduleQue);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error_JobTravelerSTSArmsSSRS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void MaterialQueueKitupsSSRS(string jobNum, string scheduleQue)
         {
-           
+           try
+            { 
             string filePath = $"{EpicUtility.Report.TempExportFolder}\\MaterialQueueKitups_SSRS_{jobNum}_{DateTime.Today.ToString("yyyyMMdd")}.pdf";
 
 
@@ -413,66 +423,88 @@ namespace ArmProductionScheduler
                    $"Emailing MaterialQueueKitups_SSRS_{jobNum} Report to distribution group \"MaterialQueueKitups\"");
 
             EmailReport(filePath, jobNum, scheduleQue);
+
         }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error_MaterialQueueKitupsSSRS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+}
 
         private void RunReport(string filePath, string jobNum, string schQue)
         {
-
-            string reportPath = "";
-
-            if (schQue == "Unfirm Jobs")
-            {
-                 reportPath = $"Reports/Sabre/Live/STSJobTravelersArmsMultiSeq";
-            }
-            else if (schQue == "Jobs Ready for Production")
-            {
-                 reportPath = $"Reports/Sabre/Live/MaterialQueue_KitUps";
-            }
-            
-
-            using (var ssrs = new EpicUtility.Reporting.SSRS(environment))
+            try
             {
 
-                var parameters = new Dictionary<string, string>();  
+                string reportPath = "";
+
                 if (schQue == "Unfirm Jobs")
                 {
-                    parameters.Add("JobNum", jobNum);
+                     reportPath = $"Reports/Sabre/Live/STSJobTravelersArmsMultiSeq";
                 }
                 else if (schQue == "Jobs Ready for Production")
                 {
-                    parameters.Add("jobNum", jobNum);
+                     reportPath = $"Reports/Sabre/Live/MaterialQueue_KitUps";
                 }
+            
+
+                using (var ssrs = new EpicUtility.Reporting.SSRS(environment))
+                {
+
+                    var parameters = new Dictionary<string, string>();  
+                    if (schQue == "Unfirm Jobs")
+                    {
+                        parameters.Add("JobNum", jobNum);
+                    }
+                    else if (schQue == "Jobs Ready for Production")
+                    {
+                        parameters.Add("jobNum", jobNum);
+                    }
                    
                
 
-                ssrs.ExportReport(reportPath, filePath, parameters, EpicUtility.ReportTypes.Pdf);
+                    ssrs.ExportReport(reportPath, filePath, parameters, EpicUtility.ReportTypes.Pdf);
+
+                }
             }
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error_RunReport", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+}
 
         private void EmailReport(string filePath, string jobNum, string schQue)
         {
-            var DistributedList = "";
-            string subject = "";
-            string body = "";
-            if (schQue == "Unfirm Jobs")
+            try
             {
-                subject = $"Job Traveler - STS Arms - {jobNum}";
-                body = $"This is Job Traveler - STS Arms report for job: {jobNum}";
-                DistributedList = EmailGroups.GetEmailByGroup(environment, "JobTravelerSTSArms");
-            }
-            else if (schQue == "Jobs Ready for Production")
-            {
-                subject = $"Material Queue Kitups - {jobNum}";
-                body = $"This is Material Queue Kitups report for job: {jobNum}";
-                DistributedList = EmailGroups.GetEmailByGroup(environment, "MaterialQueueKitups");
+                var DistributedList = "";
+                string subject = "";
+                string body = "";
+                if (schQue == "Unfirm Jobs")
+                {
+                    subject = $"Job Traveler - STS Arms - {jobNum}";
+                    body = $"This is Job Traveler - STS Arms report for job: {jobNum}";
+                    DistributedList = EmailGroups.GetEmailByGroup(environment, "JobTravelerSTSArms");
+                }
+                else if (schQue == "Jobs Ready for Production")
+                {
+                    subject = $"Material Queue Kitups - {jobNum}";
+                    body = $"This is Material Queue Kitups report for job: {jobNum}";
+                    DistributedList = EmailGroups.GetEmailByGroup(environment, "MaterialQueueKitups");
+                }
+
+
+                var attachments = new List<System.IO.FileInfo>();
+
+                attachments.Add(new System.IO.FileInfo(filePath));
+
+                SendEmail.Send(DistributedList, "", "", subject, attachments, body, true);
             }
 
-             
-            var attachments = new List<System.IO.FileInfo>();
-
-            attachments.Add(new System.IO.FileInfo(filePath));
-            
-            SendEmail.Send(DistributedList, "","", subject, attachments,body, true);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error_EmailReport", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

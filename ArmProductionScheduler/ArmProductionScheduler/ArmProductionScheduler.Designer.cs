@@ -30,10 +30,10 @@ namespace ArmProductionScheduler
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uJobFilter = new System.Windows.Forms.GroupBox();
             this.cbSchedulingQue = new System.Windows.Forms.ComboBox();
             this.lblSchedulingQue = new System.Windows.Forms.Label();
@@ -69,6 +69,11 @@ namespace ArmProductionScheduler
             this.showMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frShowMaterialContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.frShowMtlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblColorLogic = new System.Windows.Forms.Label();
+            this.lblRedInfo = new System.Windows.Forms.Label();
+            this.lblBlackInfo = new System.Windows.Forms.Label();
+            this.lblGreenInfo = new System.Windows.Forms.Label();
+            this.lblOrangeInfo = new System.Windows.Forms.Label();
             this.uJobFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -87,6 +92,11 @@ namespace ArmProductionScheduler
             // 
             this.uJobFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uJobFilter.Controls.Add(this.lblOrangeInfo);
+            this.uJobFilter.Controls.Add(this.lblGreenInfo);
+            this.uJobFilter.Controls.Add(this.lblBlackInfo);
+            this.uJobFilter.Controls.Add(this.lblRedInfo);
+            this.uJobFilter.Controls.Add(this.lblColorLogic);
             this.uJobFilter.Controls.Add(this.cbSchedulingQue);
             this.uJobFilter.Controls.Add(this.lblSchedulingQue);
             this.uJobFilter.Controls.Add(this.cbCustomer);
@@ -99,7 +109,7 @@ namespace ArmProductionScheduler
             this.uJobFilter.Controls.Add(this.lblPartNum);
             this.uJobFilter.Location = new System.Drawing.Point(12, 12);
             this.uJobFilter.Name = "uJobFilter";
-            this.uJobFilter.Size = new System.Drawing.Size(963, 98);
+            this.uJobFilter.Size = new System.Drawing.Size(1016, 98);
             this.uJobFilter.TabIndex = 2;
             this.uJobFilter.TabStop = false;
             this.uJobFilter.Text = "Filters";
@@ -223,8 +233,8 @@ namespace ArmProductionScheduler
             this.splitContainer1.Panel2.Controls.Add(this.lblToSchedulingOption);
             this.splitContainer1.Panel2.Controls.Add(this.lblToSchedulingQue);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer1.Size = new System.Drawing.Size(963, 400);
-            this.splitContainer1.SplitterDistance = 467;
+            this.splitContainer1.Size = new System.Drawing.Size(1016, 400);
+            this.splitContainer1.SplitterDistance = 492;
             this.splitContainer1.TabIndex = 3;
             // 
             // lblFrRecordIndicator
@@ -243,31 +253,31 @@ namespace ArmProductionScheduler
             this.frJobDataGridView.AllowUserToAddRows = false;
             this.frJobDataGridView.AllowUserToDeleteRows = false;
             this.frJobDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.frJobDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.frJobDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.frJobDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.frJobDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.frJobDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.frJobDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.frJobDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.frJobDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.frJobDataGridView.Location = new System.Drawing.Point(3, 27);
             this.frJobDataGridView.Name = "frJobDataGridView";
-            this.frJobDataGridView.Size = new System.Drawing.Size(450, 351);
+            this.frJobDataGridView.Size = new System.Drawing.Size(475, 351);
             this.frJobDataGridView.TabIndex = 7;
             this.frJobDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.frJobDataGridView_CellBeginEdit);
             this.frJobDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.frJobDataGridView_DataError);
@@ -321,15 +331,15 @@ namespace ArmProductionScheduler
             this.toJobDataGridView.AllowUserToAddRows = false;
             this.toJobDataGridView.AllowUserToDeleteRows = false;
             this.toJobDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.toJobDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.toJobDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.toJobDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toJobDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.toJobDataGridView.Location = new System.Drawing.Point(31, 27);
             this.toJobDataGridView.Name = "toJobDataGridView";
-            this.toJobDataGridView.Size = new System.Drawing.Size(450, 351);
+            this.toJobDataGridView.Size = new System.Drawing.Size(478, 351);
             this.toJobDataGridView.TabIndex = 11;
             this.toJobDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.toJobDataGridView_CellContentClick);
             this.toJobDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.toJobDataGridView_RowPostPaint);
@@ -392,7 +402,7 @@ namespace ArmProductionScheduler
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 517);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(987, 24);
+            this.statusStrip.Size = new System.Drawing.Size(1040, 24);
             this.statusStrip.TabIndex = 6;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -474,11 +484,65 @@ namespace ArmProductionScheduler
             this.frShowMtlToolStripMenuItem.Text = "Show Materials";
             this.frShowMtlToolStripMenuItem.Click += new System.EventHandler(this.frShowMtlToolStripMenuItem_Click);
             // 
+            // lblColorLogic
+            // 
+            this.lblColorLogic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblColorLogic.AutoSize = true;
+            this.lblColorLogic.Location = new System.Drawing.Point(812, 16);
+            this.lblColorLogic.Name = "lblColorLogic";
+            this.lblColorLogic.Size = new System.Drawing.Size(63, 13);
+            this.lblColorLogic.TabIndex = 22;
+            this.lblColorLogic.Text = "Color Logic:";
+            // 
+            // lblRedInfo
+            // 
+            this.lblRedInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRedInfo.AutoSize = true;
+            this.lblRedInfo.ForeColor = System.Drawing.Color.Red;
+            this.lblRedInfo.Location = new System.Drawing.Point(812, 29);
+            this.lblRedInfo.Name = "lblRedInfo";
+            this.lblRedInfo.Size = new System.Drawing.Size(126, 13);
+            this.lblRedInfo.TabIndex = 23;
+            this.lblRedInfo.Text = "Red – material shortages ";
+            // 
+            // lblBlackInfo
+            // 
+            this.lblBlackInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBlackInfo.AutoSize = true;
+            this.lblBlackInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblBlackInfo.Location = new System.Drawing.Point(812, 42);
+            this.lblBlackInfo.Name = "lblBlackInfo";
+            this.lblBlackInfo.Size = new System.Drawing.Size(136, 13);
+            this.lblBlackInfo.TabIndex = 24;
+            this.lblBlackInfo.Text = "Black – all material on hand";
+            // 
+            // lblGreenInfo
+            // 
+            this.lblGreenInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGreenInfo.AutoSize = true;
+            this.lblGreenInfo.ForeColor = System.Drawing.Color.Green;
+            this.lblGreenInfo.Location = new System.Drawing.Point(812, 54);
+            this.lblGreenInfo.Name = "lblGreenInfo";
+            this.lblGreenInfo.Size = new System.Drawing.Size(153, 13);
+            this.lblGreenInfo.TabIndex = 25;
+            this.lblGreenInfo.Text = "Green – some material on hand";
+            // 
+            // lblOrangeInfo
+            // 
+            this.lblOrangeInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOrangeInfo.AutoSize = true;
+            this.lblOrangeInfo.ForeColor = System.Drawing.Color.Orange;
+            this.lblOrangeInfo.Location = new System.Drawing.Point(812, 67);
+            this.lblOrangeInfo.Name = "lblOrangeInfo";
+            this.lblOrangeInfo.Size = new System.Drawing.Size(203, 13);
+            this.lblOrangeInfo.TabIndex = 26;
+            this.lblOrangeInfo.Text = "Orange – material kitted/issued to the job ";
+            // 
             // ArmProductionScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 541);
+            this.ClientSize = new System.Drawing.Size(1040, 541);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.uJobFilter);
@@ -545,6 +609,11 @@ namespace ArmProductionScheduler
         private System.Windows.Forms.ToolStripMenuItem showMaterialsToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip frShowMaterialContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem frShowMtlToolStripMenuItem;
+        private System.Windows.Forms.Label lblOrangeInfo;
+        private System.Windows.Forms.Label lblGreenInfo;
+        private System.Windows.Forms.Label lblBlackInfo;
+        private System.Windows.Forms.Label lblRedInfo;
+        private System.Windows.Forms.Label lblColorLogic;
     }
 }
 

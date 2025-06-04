@@ -50,6 +50,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Test|AnyCPU'">
     <OutputPath>bin\Release_Test\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Live|AnyCPU'">
+    <OutputPath>bin\Release_Live\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Erp.Contracts.BO.JobEntry">
       <HintPath>..\..\..\..\..\Epicor10Dll\Erp.Contracts.BO.JobEntry.dll</HintPath>

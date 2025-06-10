@@ -450,15 +450,25 @@ namespace ArmProductionScheduler
 
                 using (var ssrs = new EpicUtility.Reporting.SSRS(environment))
                 {
-
-                    var parameters = new Dictionary<string, string>();  
+                    var parameters = new List<EpicUtility.Reporting.SSRSParameter>();
+                   
                     if (schQue == "Unfirm Jobs")
                     {
-                        parameters.Add("JobNum", jobNum);
+                        parameters.Add(new EpicUtility.Reporting.SSRSParameter("JobNum", jobNum));
+
+                        int[] seqList; 
+                         seqList =  GetSequenceList(jobNum);
+
+                       
+                        foreach (int sl in seqList)
+                        {
+                            parameters.Add(new EpicUtility.Reporting.SSRSParameter("seqNumbers", sl.ToString()));
+                        } 
+                       
                     }
                     else if (schQue == "Jobs Ready for Production")
                     {
-                        parameters.Add("jobNum", jobNum);
+                        parameters.Add(new EpicUtility.Reporting.SSRSParameter("jobNum", jobNum));
                     }
                    
                
@@ -596,6 +606,45 @@ namespace ArmProductionScheduler
             };
             return EpicConnector.Queries.Utility.Scalar<string>(environment, sql, sqlParams);
             
+        }
+
+        public int[] GetSequenceList(string jobNum)
+        {
+            string sql = @"                
+                    SELECT
+
+                         SequenceStart
+                        ,SequenceEnd
+                    FROM
+
+                        Job.JobHead
+                    WHERE
+
+                        Company = @company
+                        AND JobNum = @jobNum
+                        ";
+
+            var sqlParams = new SqlParameter[]
+              {
+                    new SqlParameter("@company", COMPANY),
+                    new SqlParameter("@jobNum", jobNum)
+
+              };
+
+            DataTable jobSeqDel = EpicConnector.Queries.Utility.GetTableBySql(environment, sql, sqlParams);
+            int SeqStart = 0;
+            int SeqEnd = 0;
+            SeqStart = jobSeqDel.Rows[0]["SequenceStart"].ToInt();
+            SeqEnd = jobSeqDel.Rows[0]["SequenceEnd"].ToInt();
+
+            List<int> jobSeqList = new List<int>();
+            for (int i = SeqStart; i<= SeqEnd; i++)
+            {
+                jobSeqList.Add(i);
+            }
+
+            return jobSeqList.ToArray();
+
         }
 
 

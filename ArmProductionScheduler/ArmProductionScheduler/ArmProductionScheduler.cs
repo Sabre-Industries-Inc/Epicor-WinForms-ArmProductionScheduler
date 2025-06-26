@@ -578,38 +578,68 @@ namespace ArmProductionScheduler
                         col.Width = 80;
                         break;
 
-                    case "StartSeq":                      
+                    case "StartSeq":  
+                        if (scheduleQue == "Jobs Ready for Production")
+                        {
+                            col.ReadOnly = true;
+                            col.DefaultCellStyle.BackColor = Color.Silver;
+                        }
                         col.DisplayIndex = idx;
                         col.HeaderText = "Seq Start #";
                         col.Width = 40;                       
                         break;
 
-                    case "EndSeq":                      
+                    case "EndSeq":
+                        if (scheduleQue == "Jobs Ready for Production")
+                        {
+                            col.ReadOnly = true;
+                            col.DefaultCellStyle.BackColor = Color.Silver;
+                        }
                         col.DisplayIndex = idx;
                         col.HeaderText = "Seq End #";
                         col.Width = 40;                       
                         break;
 
-                    case "Inspection":                       
+                    case "Inspection":
+                        if (scheduleQue == "Jobs Ready for Production")
+                        {
+                            col.ReadOnly = true;
+                            col.DefaultCellStyle.BackColor = Color.Silver;
+                        }
                         col.DisplayIndex = idx;
                         col.HeaderText = "Inspection %";
                         col.Width = 60;
                         col.ReadOnly = true; 
                         break;
 
-                    case "ScheduleLine":                     
+                    case "ScheduleLine":
+                        if (scheduleQue == "Jobs Ready for Production")
+                        {
+                            col.ReadOnly = true;
+                            col.DefaultCellStyle.BackColor = Color.Silver;
+                        }
                         col.DisplayIndex = idx;
                         col.HeaderText = "Schedule Line";
                         col.Width = 60;                        
                         break;
 
-                    case "FitupProdStd":                     
+                    case "FitupProdStd":
+                        if (scheduleQue == "Jobs Ready for Production")
+                        {
+                            col.ReadOnly = true;
+                            col.DefaultCellStyle.BackColor = Color.Silver;
+                        }
                         col.DisplayIndex = idx;
                         col.HeaderText = "Fit Up Prod Std";
                         col.Width = 60;                       
                         break;
 
-                    case "WeldOutProdStd":                    
+                    case "WeldOutProdStd":
+                        if (scheduleQue == "Jobs Ready for Production")
+                        {
+                            col.ReadOnly = true;
+                            col.DefaultCellStyle.BackColor = Color.Silver;
+                        }
                         col.DisplayIndex = idx;
                         col.HeaderText = "Weld Out Prod Std";
                         col.Width = 60;
@@ -1051,33 +1081,45 @@ namespace ArmProductionScheduler
                         col.Width = 60;
                         break;
 
-                    case "StartSeq":
-                        removeColumns.Add(col);
+                    case "StartSeq":                       
+                        col.ReadOnly = true;
                         col.HeaderText = "Seq Start #";
+                        col.DefaultCellStyle.BackColor = Color.Silver;
                         col.Width = 40;
                         break;
 
                     case "EndSeq":
-                        removeColumns.Add(col);
+                        col.ReadOnly = true;
                         col.HeaderText = "Seq End #";
+                        col.DefaultCellStyle.BackColor = Color.Silver;
                         col.Width = 40;
-                        break;                
+                        break;
+
+                    case "Inspection":                       
+                        col.ReadOnly = true;
+                        col.DefaultCellStyle.BackColor = Color.Silver;                       
+                        col.HeaderText = "Inspection %";
+                        col.Width = 60;                      
+                        break;
 
                     case "ScheduleLine":
-                        removeColumns.Add(col);
+                        col.ReadOnly = true;
                         col.HeaderText = "Schedule Line";
+                        col.DefaultCellStyle.BackColor = Color.Silver;
                         col.Width = 60;
                         break;
 
                     case "FitupProdStd":
-                        removeColumns.Add(col);
+                        col.ReadOnly = true;
                         col.HeaderText = "Fit Up Prod Std";
+                        col.DefaultCellStyle.BackColor = Color.Silver;
                         col.Width = 60;
                         break;
 
                     case "WeldOutProdStd":
-                        removeColumns.Add(col);
+                        col.ReadOnly = true;
                         col.HeaderText = "Weld Out Prod Std";
+                        col.DefaultCellStyle.BackColor = Color.Silver;
                         col.Width = 60;
                         break;
 

@@ -81,6 +81,7 @@
       <DependentUpon>ArmProductionScheduler.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="EpicorLogger.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

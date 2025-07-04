@@ -14,6 +14,7 @@ using Erp.BO;
 using System.Diagnostics;
 using EpicUtility.Email;
 
+
 namespace ArmProductionScheduler
 {
     class Database
@@ -32,8 +33,8 @@ namespace ArmProductionScheduler
 
         private JobHeadUpdate jobHeadUpdate;     
         private JobOperUpdate jobOperUpdate;
-        
 
+        private EpicorLogger logger = null;
         #endregion -- Fields --
 
         #region -- Constructor --
@@ -48,6 +49,8 @@ namespace ArmProductionScheduler
             epicorConnection = new EpicConnector.Connection(environment);           
 
             userId = EpicConnector.Queries.Utility.GetEpicorIdByWindowsId(epicorConnection.EpicEnvironment, Environment.UserName);
+
+            this.logger = new EpicorLogger(env); 
         }
 
         #endregion -- Constructor --
@@ -292,6 +295,7 @@ namespace ArmProductionScheduler
                     columns.Add(new EpicorSetterColumn(JobHeadUpdate.SequenceEnd, int.Parse(modifiedRow["EndSeq"].ToString())));
                     columns.Add(new EpicorSetterColumn(JobHeadUpdate.InspectionPct, modifiedRow["Inspection"].ToString()));
                     columns.Add(new EpicorSetterColumn(JobHeadUpdate.ScheduleLine, modifiedRow["ScheduleLine"].ToString()));
+                    columns.Add(new EpicorSetterColumn(JobHeadUpdate.StartDate, DateTime.Parse(DateTime.Today.ToString())));
 
                 }
 
@@ -366,7 +370,8 @@ namespace ArmProductionScheduler
             }
             catch (Exception e)
             {
-                Logging.LogMessage(TraceLevel.Error, "Failed to update the job '{0}' - {1}", jobNum, e.ToString());
+              /*  Logging.LogMessage(TraceLevel.Error, "Failed to update the job '{0}' - {1}", jobNum, e.ToString()); */
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Error, "",$"Failed to update the job '{jobNum}' - {e.ToString()}");
 
                 MessageBox.Show(string.Format("Failed to update the job '{0}'. {1}", jobNum, e.Message)); 
                 return true;
@@ -388,20 +393,24 @@ namespace ArmProductionScheduler
 
                 string filePath = $"{EpicUtility.Report.TempExportFolder}\\JobTraveler_STSArms_SSRS_{jobNum}_{DateTime.Today.ToString("yyyyMMdd")}.pdf";
 
-
-                Logging.LogMessage(TraceLevel.Info,
+              /*  Logging.LogMessage(TraceLevel.Info,
+                     $"Generating JobTraveler_STSArms_SSRS_{jobNum} Report, {DateTime.Today.ToShortDateString()}"); */
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Information, "",
                       $"Generating JobTraveler_STSArms_SSRS_{jobNum} Report, {DateTime.Today.ToShortDateString()}");
 
                 RunReport(filePath, jobNum, scheduleQue);
 
 
-                Logging.LogMessage(TraceLevel.Info,
-                       $"Emailing JobTraveler_STSArms_SSRS_{jobNum} Report to distribution group \"JobTravelerSTSArms\"");
+              /*  Logging.LogMessage(TraceLevel.Info,
+                       $"Emailing JobTraveler_STSArms_SSRS_{jobNum} Report to distribution group \"JobTravelerSTSArms\""); */
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Information, "",
+                      $"Emailing JobTraveler_STSArms_SSRS_{jobNum} Report to distribution group \"JobTravelerSTSArms\"");
 
                 EmailReport(filePath, jobNum, scheduleQue);
             }
             catch (Exception ex)
             {
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Error, "", ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error_JobTravelerSTSArmsSSRS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -413,20 +422,26 @@ namespace ArmProductionScheduler
             string filePath = $"{EpicUtility.Report.TempExportFolder}\\MaterialQueueKitups_SSRS_{jobNum}_{DateTime.Today.ToString("yyyyMMdd")}.pdf";
 
 
-            Logging.LogMessage(TraceLevel.Info,
+           /* Logging.LogMessage(TraceLevel.Info,
+                  $"Generating MaterialQueueKitups_SSRS_{jobNum} Report, {DateTime.Today.ToShortDateString()}"); */
+            logger.AddLog(System.Diagnostics.EventLogEntryType.Information, "",
                   $"Generating MaterialQueueKitups_SSRS_{jobNum} Report, {DateTime.Today.ToShortDateString()}");
 
-            RunReport(filePath, jobNum, scheduleQue);
+                RunReport(filePath, jobNum, scheduleQue);
 
 
-            Logging.LogMessage(TraceLevel.Info,
-                   $"Emailing MaterialQueueKitups_SSRS_{jobNum} Report to distribution group \"MaterialQueueKitups\"");
+          /*  Logging.LogMessage(TraceLevel.Info,
+                   $"Emailing MaterialQueueKitups_SSRS_{jobNum} Report to distribution group \"MaterialQueueKitups\""); */
 
-            EmailReport(filePath, jobNum, scheduleQue);
+            logger.AddLog(System.Diagnostics.EventLogEntryType.Information, "",
+                       $"Emailing MaterialQueueKitups_SSRS_{jobNum} Report to distribution group \"MaterialQueueKitups\"");
+
+                EmailReport(filePath, jobNum, scheduleQue);
 
         }
             catch (Exception ex)
             {
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Error, "", ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error_MaterialQueueKitupsSSRS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 }
@@ -479,6 +494,7 @@ namespace ArmProductionScheduler
             }
             catch (Exception ex)
             {
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Error, "", ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error_RunReport", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 }
@@ -513,6 +529,7 @@ namespace ArmProductionScheduler
 
             catch (Exception ex)
             {
+                logger.AddLog(System.Diagnostics.EventLogEntryType.Error, "", ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error_EmailReport", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

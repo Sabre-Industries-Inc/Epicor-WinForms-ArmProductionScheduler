@@ -295,7 +295,8 @@ namespace ArmProductionScheduler
                     columns.Add(new EpicorSetterColumn(JobHeadUpdate.SequenceEnd, int.Parse(modifiedRow["EndSeq"].ToString())));
                     columns.Add(new EpicorSetterColumn(JobHeadUpdate.InspectionPct, modifiedRow["Inspection"].ToString()));
                     columns.Add(new EpicorSetterColumn(JobHeadUpdate.ScheduleLine, modifiedRow["ScheduleLine"].ToString()));
-                    columns.Add(new EpicorSetterColumn(JobHeadUpdate.StartDate, DateTime.Parse(DateTime.Today.ToString())));
+                   // columns.Add(new EpicorSetterColumn(JobHeadUpdate.StartDate, DateTime.Parse(DateTime.Today.ToString())));
+                    columns.Add(new EpicorSetterColumn(JobHeadUpdate.NeedsRescheduled, true));
 
                 }
 
